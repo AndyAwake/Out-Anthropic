@@ -1,0 +1,269 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#ffffff"><title>Out-Anthropic · Claude 迁移，不用从零开始。 | AndyAwake</title><meta name="description" content="聊天、Projects、记忆、原始附件、Claude Code 的源码与 Skills：先生成属于你的迁移路线，再逐项备份、迁出、恢复与验证。"><meta name="author" content="AI 酋长 Andy / 星觉科技"><meta name="robots" content="index, follow"><link rel="canonical" href="https://andyawake.github.io/Out-Anthropic/"><meta property="og:type" content="article"><meta property="og:title" content="Out-Anthropic | AndyAwake"><meta property="og:description" content="聊天、Projects、记忆、原始附件、Claude Code 的源码与 Skills：先生成属于你的迁移路线，再逐项备份、迁出、恢复与验证。"><meta property="og:url" content="https://andyawake.github.io/Out-Anthropic/"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Claude 迁移，不用从零开始。", "inLanguage": "zh-CN", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "AI 酋长 Andy"}, "publisher": {"@type": "Organization", "name": "星觉科技", "url": "https://www.a6no1.cn/"}, "mainEntityOfPage": "https://andyawake.github.io/Out-Anthropic/"}</script></head>
+<body data-project="Out-Anthropic"><a class="skip-link" href="#main-content">跳转正文</a><header class="topbar"><div class="shell topbar-inner"><a class="brand" href="https://github.com/AndyAwake"><span class="brand-logo" aria-hidden="true">AW</span>ANDYAWAKE<span class="brand-sub">/ 星觉科技</span></a><button class="mobile-menu" id="menu-button" aria-expanded="false" aria-controls="top-nav">菜单 ☰</button><nav class="topnav" id="top-nav" aria-label="主导航"><a href="https://andyawake.github.io/Out-Anthropic/" aria-current="page">01 · 迁出 Claude</a><a href="https://andyawake.github.io/Free-Anthropic/" >02 · 找可用平替</a><a href="https://andyawake.github.io/Anti-Anthropic/" >03 · 学优秀方法</a><a href="https://github.com/AndyAwake/Out-Anthropic">源码 ↗</a></nav></div></header>
+<section class="hero" id="start"><div class="shell hero-grid"><div><span class="overline">FIELD GUIDE 01 / CLAUDE / CLAUDE CODE / SAFE MIGRATION</span><h1>Claude 迁移，<br><em>不用从零开始。</em></h1><p class="deck">聊天、Projects、记忆、原始附件、Claude Code 的源码与 Skills：先生成属于你的迁移路线，再逐项备份、迁出、恢复与验证。</p><div class="actionset"><a class="button button-primary" href="#route-planner">开始生成迁移路线 ↘</a><a class="button button-light" href="https://andyawake.github.io/Free-Anthropic/">查看平替工具 ↗</a><a class="button button-light" href="assets/guide.pdf" download>PDF 全文 ↓</a></div></div><div class="hero-aside"><div class="big-number">16</div><p>全文章节 / DEEP DIVE</p><hr><div class="aside-meta"><div><b>资料类型</b>　开源知识手册</div><div><b>核查日期</b>　2026.11.14</div><div><b>版本</b>　4.0 · 用户优先</div><div><b>读者</b>　普通用户 / 团队 / 创业者</div></div></div></div></section>
+<div class="note-strip"><div class="shell"><b>编辑原则 / EDITORIAL RULE</b><span>官方导出不一定包含你上传过的原始文件；每一步都配有核验，避免“下载了但恢复不了”。</span></div></div>
+<div class="shell journey-wrap" aria-label="三步阅读路线"><p class="journey-overline">YOUR ROUTE / 从 Claude 出发，最终把能力留在自己手里</p><div class="journey-grid"><a class="journey-card current" href="https://andyawake.github.io/Out-Anthropic/" aria-current="step"><span class="journey-n">01</span><strong>先备份迁出</strong><small>对话、Projects、Code、文件、恢复验证</small><span class="journey-arrow">↗</span></a><a class="journey-card" href="https://andyawake.github.io/Free-Anthropic/"><span class="journey-n">02</span><strong>再找可用平替</strong><small>按工作任务与真实验收匹配工具</small><span class="journey-arrow">↗</span></a><a class="journey-card" href="https://andyawake.github.io/Anti-Anthropic/"><span class="journey-n">03</span><strong>把优秀方法留下</strong><small>Skills、MCP、Agent、公开证据与独立性</small><span class="journey-arrow">↗</span></a></div></div><div class="tabline"><div class="shell"><a href="#main-content">章节正文</a><a href="#quickcheck">快速自查</a><a href="#resources">文档与模板</a><a href="#about-author">关于作者</a><a href="assets/guide.pdf">PDF 全文 ↓</a></div></div>
+<div class="shell layout" id="main-content"><aside class="toc" aria-label="章节目录"><p>CHAPTERS / 内容索引</p><a href="#chapter-01">01｜用户先选这条路：今天你只需完成一个项目的迁移</a><a href="#chapter-02">02｜先明确：迁移的终点不是“下载成功”</a><a href="#chapter-03">03｜第 1 步：申请官方导出，保存原件</a><a href="#chapter-04">04｜第 2 步：建立七类资产目录</a><a href="#chapter-05">05｜第 3 步：记忆要单独迁，不要复制整段私人历史</a><a href="#chapter-06">06｜第 4 步：逐个项目写“交接卡”</a><a href="#chapter-07">07｜第 5 步：原文件、代码与成品分开保存</a><a href="#chapter-08">08｜Claude Code 是单独的一类迁移，不能只导出聊天</a><a href="#chapter-09">09｜第 6 步：只迁一个真实任务，做双轨试验</a><a href="#chapter-10">10｜第 7 步：独立恢复，才算交付</a><a href="#chapter-11">11｜风险清单：最容易遗漏的十件事</a><a href="#chapter-12">12｜Andy 的实践札记：跨工作台，应该保存什么</a><a href="#chapter-13">13｜七天完成最小迁移</a><a href="#chapter-14">14｜谁来做、谁复核</a><a href="#chapter-15">15｜你真正应该保留下来的交付清单</a><a href="#chapter-16">16｜官方来源与延伸阅读</a></aside>
+<div class="bodycolumn"><section class="route-box" id="route-planner" aria-labelledby="planner-heading"><div class="route-head"><div><p class="overline">START HERE / CHOOSE YOUR PATH</p><h2 id="planner-heading">我的 Claude 资料，怎么搬？</h2><p>选择你的来源和目标工具，生成一份可下载的迁移计划。<strong>全部在浏览器本地处理，不会读取或上传私人资料。</strong></p></div><span class="route-tag">无需登录</span></div><div class="route-form"><label for="migration-source">你现在主要使用什么？<select id="migration-source"><option value="web">Claude 聊天 / 网页版</option><option value="projects">Claude Projects / 记忆</option><option value="code">Claude Code / Agent</option><option value="api">Claude API / 自动化</option></select></label><label for="migration-target">准备迁往哪里？<select id="migration-target"><option value="codex">Codex / 代码 Agent</option><option value="workbuddy">WorkBuddy / 国内工作台</option><option value="chatgpt">ChatGPT / 普通聊天</option><option value="gemini">Gemini / Gemini CLI</option><option value="domestic">Kimi / 豆包等国内助手</option><option value="selfhost">本地模型 / 自托管工具</option></select></label></div><div class="route-actions"><button class="button button-primary" id="generate-plan" type="button">生成我的迁移步骤</button><button class="button button-light" id="download-plan" type="button" disabled>下载 Markdown 计划</button></div><div class="route-result" id="migration-result" aria-live="polite" hidden><h3>你的迁移执行卡</h3><pre id="plan-output"></pre></div><p class="route-privacy">官方导出需你自己在 Claude 中完成。此生成器不接收账号、文件或 API Key，也不是聊天数据自动转换器。</p></section><div class="mobile-toc"><details><summary>打开 16 章阅读目录 ↓</summary><a href="#chapter-01">01｜用户先选这条路：今天你只需完成一个项目的迁移</a><a href="#chapter-02">02｜先明确：迁移的终点不是“下载成功”</a><a href="#chapter-03">03｜第 1 步：申请官方导出，保存原件</a><a href="#chapter-04">04｜第 2 步：建立七类资产目录</a><a href="#chapter-05">05｜第 3 步：记忆要单独迁，不要复制整段私人历史</a><a href="#chapter-06">06｜第 4 步：逐个项目写“交接卡”</a><a href="#chapter-07">07｜第 5 步：原文件、代码与成品分开保存</a><a href="#chapter-08">08｜Claude Code 是单独的一类迁移，不能只导出聊天</a><a href="#chapter-09">09｜第 6 步：只迁一个真实任务，做双轨试验</a><a href="#chapter-10">10｜第 7 步：独立恢复，才算交付</a><a href="#chapter-11">11｜风险清单：最容易遗漏的十件事</a><a href="#chapter-12">12｜Andy 的实践札记：跨工作台，应该保存什么</a><a href="#chapter-13">13｜七天完成最小迁移</a><a href="#chapter-14">14｜谁来做、谁复核</a><a href="#chapter-15">15｜你真正应该保留下来的交付清单</a><a href="#chapter-16">16｜官方来源与延伸阅读</a></details></div><div class="ux-widget" id="quickcheck"><p class="overline">YOUR WORK / LIVE CHECKLIST</p><h2>七步数据迁移进度</h2><p>勾选状态保存在当前设备浏览器，不上传任何资料。</p><div class="progress-label" id="progress-value" aria-live="polite">0 / 7 项</div><div class="progress-rail" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div><div class="check-items"><label class="check-item"><input type="checkbox" data-check value="item-1"><span>申请官方导出并保存未修改的原件</span></label><label class="check-item"><input type="checkbox" data-check value="item-2"><span>建立七类资产清单，按项目整理</span></label><label class="check-item"><input type="checkbox" data-check value="item-3"><span>单独保存并清理记忆和长期偏好</span></label><label class="check-item"><input type="checkbox" data-check value="item-4"><span>为 P0 项目填写交接卡</span></label><label class="check-item"><input type="checkbox" data-check value="item-5"><span>补齐原始上传文件、可编辑成品与源码</span></label><label class="check-item"><input type="checkbox" data-check value="item-6"><span>在替代工具中重做一个相同的真实任务</span></label><label class="check-item"><input type="checkbox" data-check value="item-7"><span>从独立副本恢复并记录差异与缺口</span></label></div><div style="margin-top:13px"><button class="subtle-btn" id="reset-checks">重置清单</button></div></div><article class="article" aria-label="手册全文"><blockquote>
+<p><strong>Out-Anthropic · V4.0 / 2026-11-14 / AndyAwake × 星觉科技</strong><br />
+这不是一键迁移工具，也不会访问你的账号。只处理你有权导出的数据；目标是把工作拿回来，并证明在新环境里可以继续。</p>
+</blockquote>
+<h2 id="chapter-01">01｜用户先选这条路：今天你只需完成一个项目的迁移</h2>
+<p>如果你正在用 Claude，不需要因为政治争论或工具热度而仓促关闭账户。<strong>先保住资料，再移走一项任务，最后决定要不要换主力工具。</strong> 你拥有合法使用权的项目应该能被另一个人和另一套工具接手。</p>
+<p><strong>四种起点：</strong></p>
+<div class="table-scroller"><table>
+<thead>
+<tr>
+  <th>你正在用什么</th>
+  <th>今天的最小动作</th>
+  <th>再去哪里</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Claude 网页/桌面聊天</td>
+  <td>申请官方数据导出、保存原件，单独保存重要聊天与原始附件</td>
+  <td>第 1～4 步</td>
+</tr>
+<tr>
+  <td>Claude Projects / 记忆</td>
+  <td>复制项目指令、补齐知识文件，导出并人工清理记忆</td>
+  <td>第 2～5 步</td>
+</tr>
+<tr>
+  <td>Claude Code / Agent</td>
+  <td>从 Git 仓库、<code>CLAUDE.md</code>、Skills、MCP 和本地环境建立交接包</td>
+  <td><a href="CLAUDE-CODE-MIGRATION.md">Claude Code 专项迁移</a></td>
+</tr>
+<tr>
+  <td>使用 Claude API 的业务</td>
+  <td>记录实际模型、输入输出、接口契约、计费与失败重试，保留回放用例</td>
+  <td>第 5～7 步 + <a href="https://github.com/AndyAwake/Free-Anthropic/blob/main/ALTERNATIVE-MATRIX.md">平替矩阵</a></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>你不必公开上传任何聊天文件。</strong> 站内迁移路线选择器只输出一个通用执行计划，不读取个人数据，也不会把你的对话上传到网站。先用它生成计划，再按官方教程手工导出。</p>
+<hr />
+<h2 id="chapter-02">02｜先明确：迁移的终点不是“下载成功”</h2>
+<p>一个 AI 账号里至少有七种资产：对话、记忆、项目说明、原始上传文件、生成成品、代码/脚本、自动化与连接配置。官方导出不一定包含全部。真正的完成标准是 <strong>资料独立保存、关键文件可打开、至少一项工作在替代环境重做成功</strong>。</p>
+<p>需要迁移的人通常分为四类：个人账户仍能登录；Team/Enterprise 组织成员；团队所有者；账号已无法登录。先确定自己属于哪一种，不要照抄别人的菜单。</p>
+<h3>不必今天把所有历史都搬完</h3>
+<p>给重要资料按风险分组：</p>
+<ul>
+<li><strong>P0</strong>：当前收费项目、客户授权材料、正在运行的自动化和唯一原件。</li>
+<li><strong>P1</strong>：常用提示词、背景资料、项目决定、已产出文件。</li>
+<li><strong>P2</strong>：过期聊天、闲聊、已有其他备份的材料。</li>
+</ul>
+<p>从一项 P0 项目开始。重要的是<strong>可恢复</strong>，不是立刻清空旧账号。</p>
+<h2 id="chapter-03">03｜第 1 步：申请官方导出，保存原件</h2>
+<p>根据 <a href="https://support.claude.com/en/articles/9450526-export-your-claude-data">Claude 官方导出说明</a>，个人 Free、Pro、Max、Ultra 等计划的账号，可在 Claude 网页版或桌面端进入 <strong>Settings → Privacy → Export data</strong>。官方说明 iOS/Android 不能直接发起该导出；组织成员可能需要 Owner 或 Primary Owner 开启权限；Primary Owner 使用组织数据与隐私入口。</p>
+<p>官方邮件下载链接通常 <strong>24 小时后过期</strong>，可能只能使用一次，下载时还须登录。把下载的压缩包放入 <code>00-official-export/YYYY-MM-DD/</code>，不要立刻解压后删除原件。文件名要保留日期、平台、账户或组织类别；切忌把账号口令写进文件名。</p>
+<p><strong>官方明确：聊天导出不包含原来上传的文件，也不包含某些独立产品数据。</strong> 因此要单独补齐项目文件、原稿和成品。官方也表示个人账户之间不能直接导入导出的聊天作为完整迁移。</p>
+<h3>一步验收</h3>
+<p>能说出导出日期、原压缩包位置、是否能成功解压、里面实际包含哪些内容；不能只写“已导出”。</p>
+<h2 id="chapter-04">04｜第 2 步：建立七类资产目录</h2>
+<p>建议使用以下结构，普通用户可以在文件管理器手动建立，不需要先装开发工具：</p>
+<pre><code class="language-text">AI-Migration/
+├── 00-official-export/      # 平台提供的原始导出
+├── 01-conversations/        # 可检索对话与索引
+├── 02-memory/               # 人工审核后的记忆与偏好
+├── 03-projects/             # 项目背景、决策、任务说明
+├── 04-original-files/       # 自己上传过的原始附件
+├── 05-deliverables/         # 可编辑成品及版本
+├── 06-code-and-workflows/   # 源码、自动化定义、提示词
+└── 07-restore-check/        # 恢复测试与差异记录
+</code></pre>
+<p>把 <strong><code>templates/migration-inventory.csv</code></strong> 填成真实台账：项目名、原始系统、资料类别、当前路径、可否导出、保存位置、保密等级、最近抽查和缺口。任何一栏不知道就填写“未知”，不要写“已完成”。</p>
+<h2 id="chapter-05">05｜第 3 步：记忆要单独迁，不要复制整段私人历史</h2>
+<p>Claude 已提供 <a href="https://support.claude.com/en/articles/12123587-import-and-export-your-memory-from-claude">Memory import/export 官方说明</a>，但不同产品和版本的入口、自动整理能力有所区别。先按自己的账号中<strong>当前实际可见</strong>的设置进行操作，再人工检查。</p>
+<p>推荐在本地保存 <code>02-memory/profile.md</code>：</p>
+<pre><code class="language-text"># 工作偏好（教学模板）
+职业角色：
+正在进行的项目：
+长期目标：
+写作风格：
+反复被纠正的问题：
+常用软件与技术栈：
+不得自动执行的事情：
+最近一次人工复核日期：
+</code></pre>
+<p><strong>隐私排除：</strong> 删去账号密码、API Key、家庭成员敏感资料、医疗记录、客户名单、内部财务数据；只有确实需要并获得授权的信息，才带入新工具。记忆是提示系统理解背景，不是可恢复资产的唯一证据。</p>
+<h2 id="chapter-06">06｜第 4 步：逐个项目写“交接卡”</h2>
+<p>每个正在使用的项目独立保存一份 <code>PROJECT-HANDOFF.md</code>。内容包含目标、实际输入、关键限制、做过的取舍、最后可用结果、尚未完成的工作、验收标准和下一步。</p>
+<p><strong>最小交接卡范例：</strong></p>
+<pre><code class="language-text">项目：门店内容生产（教学化匿名示例）
+目标：每周产出可审查的真实维修知识短内容
+已有输入：获得授权的原始采访、产品信息、照片
+核心限制：不虚构客户故事、故障结论或营业数据
+当前进度：已有脚本结构，是否发布与播放结果待核对
+下一步：用另一工具生成一条脚本并对照原稿人工验收
+验收：技术事实可核查，镜头有来源，文件可编辑
+</code></pre>
+<p>它能让下一位协作者接手，也能让你从 Claude 切换至其他模型时不靠“把旧聊天全部喂过去”这种高成本办法。</p>
+<h2 id="chapter-07">07｜第 5 步：原文件、代码与成品分开保存</h2>
+<p>原来上传的图片、PDF、Word、设计稿、视频，应该从你最初保存的位置补回；不要误以为聊天导出包一定保留这些二进制文件。生成的图表、汇报、代码、合同草稿等，要保存 <strong>可编辑源文件 + 最终成品 + 版本日期</strong>。</p>
+<p>如果是本地代码项目，先检查 Git 提交、未提交修改、<code>.env</code> 文件和部署配置。代码仓库只推送<strong>允许公开</strong>的内容；密钥、客户资料和数据库备份应存放在受控私有位置。</p>
+<h3>对于懂命令行的人</h3>
+<p>本地检查单个文件 SHA-256：</p>
+<pre><code class="language-bash">shasum -a 256 important-file.zip
+</code></pre>
+<p>Windows PowerShell：</p>
+<pre><code class="language-powershell">Get-FileHash .\important-file.zip -Algorithm SHA256
+</code></pre>
+<p>比对哈希可以证明两个文件字节相同，但不能证明内容完整或没有错误；仍要实测解压、打开和恢复。</p>
+<h2 id="chapter-08">08｜Claude Code 是单独的一类迁移，不能只导出聊天</h2>
+<p>对于在 VS Code、终端或桌面端使用 Claude Code 的读者，建议额外保存 <strong>Git 仓库、未提交改动、项目规则 <code>CLAUDE.md</code>、Skills、MCP 配置说明、Hooks 行为、依赖与测试命令</strong>。<code>~/.claude/settings.json</code> 是用户级配置，<code>.claude/settings.json</code> 是项目共享配置，<code>.claude/settings.local.json</code> 通常用于个人局部设置；授权凭据、Token 等不能随意复制到公开项目。以官方设置文件说明为准。</p>
+<p>从 Claude Code 的交互会话里使用 <code>/export</code> 可保存该会话的纯文本记录；这不是针对所有项目、所有本地文件的全量导出，也不能保证被另一产品直接导入。真正可移植的项目上下文建议写进 <code>PORTABLE-PROJECT.md</code>，再分别按 Codex/Gemini CLI 等要求提供适配文件。</p>
+<p><strong>只迁一项任务的做法：</strong> 在另一个 Agent 打开同一份 Git 源码 → 读取项目说明 → 修改一个明确的 UI / 代码问题 → 运行测试 → 产出 diff 和截图 → 人工复核。不要因为打开了文件夹就宣布 Agent 迁移完成。</p>
+<p><strong><a href="CLAUDE-CODE-MIGRATION.md">打开 Claude Code 专项迁移手册与三个可编辑模板</a></strong>。</p>
+<hr />
+<h2 id="chapter-09">09｜第 6 步：只迁一个真实任务，做双轨试验</h2>
+<p>从最简单的任务开始：写一页产品 FAQ、整理一份公开资料表、改一处网页或恢复一个项目提示词。保持<strong>输入相同、成品格式相同、验收标准相同</strong>，记录新工具是否需要人工改写。</p>
+<p>迁移路线按情况分：</p>
+<div class="table-scroller"><table>
+<thead>
+<tr>
+  <th>原工作类型</th>
+  <th>第一迁移方案</th>
+  <th>必须验收</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>聊天写作</td>
+  <td>复制项目背景与原料，重新提问并保存 Markdown</td>
+  <td>事实、语气、输出格式</td>
+</tr>
+<tr>
+  <td>文档摘要</td>
+  <td>重新上传有权使用的原件，要求逐条出处</td>
+  <td>来源、遗漏、数值一致</td>
+</tr>
+<tr>
+  <td>编码/网站</td>
+  <td>从 Git / 源码打开项目，明确运行环境和任务</td>
+  <td>可运行、无秘密泄露、功能可回归</td>
+</tr>
+<tr>
+  <td>自动化与 Agent</td>
+  <td>先画出输入、工具权限、输出与人工审核点</td>
+  <td>每步可停止、失败可回滚</td>
+</tr>
+<tr>
+  <td>企业知识库</td>
+  <td>逐级审查权限、数据来源、实际模型后端</td>
+  <td>未授权用户不能访问</td>
+</tr>
+</tbody>
+</table></div>
+<p>如果新服务不支持原来的某个功能，可先改成 <strong>可编辑文本 + 人工执行步骤</strong>，再考虑升级工具或 API，避免为了迁移买复杂软件。</p>
+<h2 id="chapter-10">10｜第 7 步：独立恢复，才算交付</h2>
+<p>从另一个文件夹、另一台设备或第二份独立备份中打开核心文件，不依赖旧账号聊天窗口。完成下面的最小恢复：</p>
+<ol>
+<li>找到官方原始导出，并确认能解压。</li>
+<li>抽查最早、最近和一条长对话。</li>
+<li>找出项目交接卡和原始上传文件。</li>
+<li>用新工具完成一项真实任务。</li>
+<li>逐项核对数据、排版、引用、脚本执行或网页打开。</li>
+<li>写下失败与补救，确定谁负责下次复测。</li>
+</ol>
+<p><strong>“导出成功”与“迁移完成”不是同一状态。</strong> 只有当前这项工作恢复通过，才记录“该任务已迁移”；不要一项成功就把全部项目标记完成。</p>
+<h2 id="chapter-11">11｜风险清单：最容易遗漏的十件事</h2>
+<div class="table-scroller"><table>
+<thead>
+<tr>
+  <th>风险</th>
+  <th>早期信号</th>
+  <th>处理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>下载链接失效</td>
+  <td>导出邮件过期</td>
+  <td>及时保存原件；按官方帮助重申请</td>
+</tr>
+<tr>
+  <td>上传附件缺失</td>
+  <td>只拿到聊天包</td>
+  <td>追溯原文件来源、逐项目补齐</td>
+</tr>
+<tr>
+  <td>记忆隐私过量</td>
+  <td>一次粘贴所有私人资料</td>
+  <td>清理与任务无关的敏感内容</td>
+</tr>
+<tr>
+  <td>依赖模型隐藏</td>
+  <td>只记录工作台名称</td>
+  <td>分开记录产品、模型、服务商</td>
+</tr>
+<tr>
+  <td>代码无法运行</td>
+  <td>只备份截图或 diff</td>
+  <td>保留完整源码、环境和依赖说明</td>
+</tr>
+<tr>
+  <td>自动化重复执行</td>
+  <td>新旧任务同时生效</td>
+  <td>迁移后核查开关与触发器</td>
+</tr>
+<tr>
+  <td>客户文件不适合公开</td>
+  <td>用公开 Git 仓库当备份盘</td>
+  <td>使用授权的私有存储、权限与加密</td>
+</tr>
+<tr>
+  <td>PDF 外观正常但编辑不了</td>
+  <td>只有最终 PDF</td>
+  <td>保存 Word/Markdown/源码</td>
+</tr>
+<tr>
+  <td>费用失控</td>
+  <td>每次失败都自动重试</td>
+  <td>设置预算、日志和人工中止点</td>
+</tr>
+<tr>
+  <td>备份只放一个位置</td>
+  <td>一个设备故障全丢</td>
+  <td>采用独立备份并定期恢复演练</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="chapter-12">12｜Andy 的实践札记：跨工作台，应该保存什么</h2>
+<p><strong>真实作者工作流，非客户迁移成功率声明。</strong> 我同时使用 ChatGPT、Codex、WorkBuddy 等 AI 工具做内容、开源项目与产品工作。反复切换时，最大的摩擦不只是“某个模型记不记得我”，而是同一个项目的目标、迭代记录、源码和可交付文件散落在多个应用里。</p>
+<p>因此我强调把重要项目的 <strong>需求、决策、版本、可编辑文件和验收条件</strong> 固化为独立文档。跨工具持续备份这项工作仍需要定期验证，不能因为设置了自动任务就宣称所有数据都已经安全恢复。这也是本手册把恢复测试写成最后一步的原因。</p>
+<p>作为一个公开内容案例，<strong>“修车阿江”</strong> 的工作不是凭空写上“AI 能自动经营汽修店”，而是围绕真实故障知识、采访内容和脚本结构整理可交付的素材。迁移演练可以拿一条已有原稿，换工具生成多平台版本，再由懂维修的人审核。<strong>这里没有声称已经由迁移带来流量或成交增长。</strong></p>
+<h2 id="chapter-13">13｜七天完成最小迁移</h2>
+<p><strong>Day 1：</strong> 申请并下载导出；标明账号和日期。<br />
+<strong>Day 2：</strong> 按七类目录整理；写资产台账。<br />
+<strong>Day 3：</strong> 清理记忆；写 P0 项目交接卡。<br />
+<strong>Day 4：</strong> 补齐原文件、源代码和成品。<br />
+<strong>Day 5：</strong> 选择一个可以使用的新工具；重做同题任务。<br />
+<strong>Day 6：</strong> 从独立备份恢复，记录失败。<br />
+<strong>Day 7：</strong> 修正缺口，建立定期复查和责任人。</p>
+<h2 id="chapter-14">14｜谁来做、谁复核</h2>
+<p>个人用户可一人完成；小团队建议至少有<strong>资料负责人、业务验收人、账号/权限负责人</strong>。这些角色可以兼任，但迁移状态必须留下具体日期和证据。对于受保密义务约束的客户资料，先取得必要授权，公开仓库只放无隐私的结构模板。</p>
+<h2 id="chapter-15">15｜你真正应该保留下来的交付清单</h2>
+<ul>
+<li>官方导出原件及下载日期。</li>
+<li>可读对话索引、清理后的记忆文件。</li>
+<li>每个重要项目的交接卡。</li>
+<li>输入文件、可编辑成品和源码。</li>
+<li>迁移资产 CSV、一次同题任务的比较结果。</li>
+<li>独立恢复测试记录（通过/未通过/缺口）。</li>
+</ul>
+<p>开源内容和表格模板免费使用。需要企业跨工具迁移、Agent 工作流设计或多模型项目梳理，可从 <a href="https://www.a6no1.cn/">星觉科技公司官网</a> 了解服务，或者从 <a href="https://metaver.vip/">Andy 个人官网</a> 看更多产品实践。微信 <strong>AIPMAndy</strong>，建议备注「迁移 / 资料类别 / 具体问题」。</p>
+<h2 id="chapter-16">16｜官方来源与延伸阅读</h2>
+<ol>
+<li><a href="https://support.claude.com/en/articles/9450526-export-your-claude-data">Claude：Export your Claude data</a></li>
+<li><a href="https://support.claude.com/en/articles/12123587-import-and-export-your-memory-from-claude">Claude：Import and export your memory</a></li>
+<li><a href="https://github.com/AndyAwake/Out-Anthropic/blob/main/GUIDE.md">Out-Anthropic 原仓库 GUIDE.md</a></li>
+<li><a href="https://github.com/AndyAwake/Out-Anthropic/blob/main/RESTORE.md">Out-Anthropic 原仓库 RESTORE.md</a></li>
+<li><a href="https://github.com/AndyAwake/Free-Anthropic">Free-Anthropic 替代工作流</a></li>
+</ol>
+<p><strong>更新说明：</strong> 平台界面、权限、导出范围和计费可能调整。本文核查日期 2026-11-14；执行前始终以账号内可见功能和对应官方文档为准。避免擅自公开私人资料或将“可导出”误称“全部可移入另一平台”。</p>
+</article><section class="ux-widget" id="resources"><p class="overline">DOWNLOADS / ACTIONABLE FILES</p><h2>文档与可编辑模板</h2><p>所有手册和模板都可直接获取，无需留手机号或加微信。</p><div class="category-pills" aria-label="筛选资源"><button type="button" data-filter="all" aria-pressed="true">全部</button><button type="button" data-filter="research" aria-pressed="false">证据</button><button type="button" data-filter="practice" aria-pressed="false">实操</button><button type="button" data-filter="template" aria-pressed="false">模板</button></div><div class="resource-card" data-category="research"><h3>原仓库七步教程</h3><p>账号角色与导出操作</p><a href="https://github.com/AndyAwake/Out-Anthropic/blob/main/GUIDE.md" target="_blank" rel="noopener noreferrer">打开资源 ↗</a></div><div class="resource-card" data-category="practice"><h3>原仓库恢复清单</h3><p>验证资料与业务连续性</p><a href="https://github.com/AndyAwake/Out-Anthropic/blob/main/RESTORE.md" target="_blank" rel="noopener noreferrer">打开资源 ↗</a></div><div class="resource-card" data-category="template"><h3>迁移资产台账 CSV</h3><p>七类资料逐项登记</p><a href="templates/migration-inventory.csv">打开资源 ↗</a></div><div class="resource-card" data-category="template"><h3>项目交接卡 Markdown</h3><p>目标、版本、依赖与验收</p><a href="templates/PROJECT-HANDOFF.md">打开资源 ↗</a></div><div class="resource-card" data-category="template"><h3>恢复测试报告</h3><p>逐项记录真实恢复结果</p><a href="templates/restore-report.md">打开资源 ↗</a></div><div class="resource-card" data-category="research"><h3>Claude 官方导出说明</h3><p>账户与权限最新说明</p><a href="https://support.claude.com/en/articles/9450526-export-your-claude-data" target="_blank" rel="noopener noreferrer">打开资源 ↗</a></div><div class="resource-card" data-category="practice"><h3>Claude Code 专项迁移</h3><p>源码、会话、CLAUDE.md、Skills、MCP、Hooks</p><a href="CLAUDE-CODE-MIGRATION.md">打开资源 ↗</a></div><div class="resource-card" data-category="template"><h3>通用项目上下文</h3><p>跨工具共有项目目标、限制与验收</p><a href="templates/PORTABLE-PROJECT.md">打开资源 ↗</a></div><div class="resource-card" data-category="template"><h3>Codex 适配模板</h3><p>通用工程约束</p><a href="templates/AGENTS.md">打开资源 ↗</a></div><div class="resource-card" data-category="template"><h3>Gemini CLI 适配模板</h3><p>上下文导入示例</p><a href="templates/GEMINI.md">打开资源 ↗</a></div><div class="resource-card" data-category="template"><h3>本地迁移计划模板</h3><p>七类资产登记与单任务回放</p><a href="templates/MIGRATION-PLAN.md">打开资源 ↗</a></div></section></div>
+<aside class="inline-tools"><div class="right-block"><h3>OPEN EDITION</h3><p>本版完整内容以 HTML 和可编辑 Markdown 发布，并提供全文 PDF。</p><a href="assets/guide.pdf">↓ 完整 PDF</a><a href="HANDBOOK.md">↗ Markdown</a></div><div class="right-block"><h3>FIND A CHAPTER</h3><p>先看快速自查，再按目录查原始来源和真实动作。</p><button class="copy-link" data-copy="https://andyawake.github.io/Out-Anthropic/">复制本页链接</button></div><div class="right-block"><h3>RELATED GUIDES</h3><a href="https://andyawake.github.io/Anti-Anthropic/">Anti-Anthropic ↗</a><a href="https://andyawake.github.io/Free-Anthropic/">Free-Anthropic ↗</a></div></aside></div>
+<section class="shell brand-block" id="about-author"><div><span class="chapter-kicker">BY ANDYAWAKE / FROM PRACTICE</span><h2>方法公开，<br>真正的价值在于交付。</h2><p>作者长期从事 B 端 AI 产品、内容与开源实践。把学习资料整理成可执行的迁移方案、Skills、工具选择矩阵与真实工作流；客户与私密资料不会进入公开仓库。开源教程可以独立使用，商务联系只是可选入口。</p></div><div class="brand-meta"><div class="row"><span>公司 · 星觉科技</span><a href="https://www.a6no1.cn/">www.a6no1.cn ↗</a></div><div class="row"><span>作者 · AI 酋长 Andy</span><a href="https://metaver.vip/">metaver.vip ↗</a></div><div class="row"><span>商务微信</span><div><b>AIPMAndy</b>　<button data-copy="AIPMAndy">复制</button></div></div><p style="color:#8d918c;font-size:11px;line-height:1.9">开源内容无需付费。咨询服务可选，需求、价格和交付范围另行约定。</p></div></section>
+<footer class="foot"><div class="shell"><span>© 2026 AndyAwake · V4.0 · 2026-11-14 · 资料可带走，方法可复用</span><div class="footer-cross"><a href="https://www.a6no1.cn/">公司官网</a><a href="https://metaver.vip/">个人官网</a><a href="https://github.com/AndyAwake/Out-Anthropic">源码</a></div></div></footer><script defer src="assets/app.js"></script></body></html>
